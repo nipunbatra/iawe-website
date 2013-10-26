@@ -19,37 +19,7 @@ def calculate_downsampling_frequency(df, threshold_points=15000):
 
     else:
         return None
-
-
-@app.route('/')
-def home():
-    return render_template('home.html')
-  
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/visualize')
-def visualize():
-    return render_template('visualize.html')
-
-@app.route('/query',methods=['POST'])
-def query():
-	'''
-	print request
-	print request.data
-	print "JSON"
-	print request.json
-	print "*"*100
-	print request.form
-	for key in request.form:
-		print key
-		t=dict(key)
-		for k in t:
-			print k
-	return request.data
-	'''
-	data=json.loads(request.data)
+def process_smart_meter(data):
 	param_string=""
 	for param in data['parameters']:
 		param_string=param_string+param+","
@@ -72,8 +42,29 @@ def query():
 	for key in result:
 		temp[:,1]=result[key].values    
 		series.append({'name':key,'data':temp.tolist()})
-
 	return json.dumps(series)
+
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+  
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/visualize')
+def visualize():
+    return render_template('visualize.html')
+
+@app.route('/query',methods=['POST'])
+def query():
+	data=json.loads(request.data)
+	print data
+	if data["sensor"]=="smart_meter":
+		smart_meter_response=process_smart_meter(data)
+		return smart_meter_response
+	
 
   
 if __name__ == '__main__':

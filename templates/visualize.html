@@ -4,7 +4,7 @@
   <div id="sidebar">
 		<span>Select Sensor</span>
 	  	<br/>
-	  	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show()' >Smart Meter</input>
+	  	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show();uncheck();' >Smart Meter</input>
 	  	<br/>
 	  	<span id="smart_meter" class="params">
 	  		<input id="W" type="checkbox">W</input><br/>
@@ -12,7 +12,7 @@
 	  		<input id="W2" type="checkbox">W2</input><br/>
 	  	</span>
 	  	<br/>
-		<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show()' >JPlug</input>
+		<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show();uncheck();' >JPlug</input>
 		<br/>
 		<span id="jplug" class="params">
 	  		<input id="AC1" type="checkbox">AC1</input><br/>
@@ -20,15 +20,15 @@
 	  		<input id="TV" type="checkbox">Television</input>
 	  	</span>
 		<br/>
-	<input type="radio" name="sensor" value="ct" onchange='$(".params").hide();$("#ct").show()' >CT</input>
+	<input type="radio" name="sensor" value="multisensor" onchange='$(".params").hide();$("#multisensor").show();uncheck();' >Multisensor</input>
 	  	<br/>
-	  	<span id="ct" class="params">
-	  		<input id="1" type="checkbox">1</input><br/>
-	  		<input id="2" type="checkbox">2</input><br/>
+	  	<span id="multisensor" class="params">
+	  		<input id="1" type="checkbox">Room 1</input><br/>
+	  		<input id="2" type="checkbox">Room 2</input><br/>
 	  	</span>
 	  	<br/>
 
-		<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show()' >Water Meter</input>
+		<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show();uncheck();' >Water Meter</input>
 	  	<br/>
 	  	<span id="water_meter" class="params">
 	  		<input id="1" type="checkbox">Supply</input><br/>
@@ -56,6 +56,14 @@
   //Show the parameters for smart_meter
   $("#smart_meter").show();
 
+  function uncheck()
+  {
+  	$('input[type=checkbox]').each(function() 
+	{ 
+        this.checked = false; 
+	}); 
+  }
+
   
 
   var chart;
@@ -71,7 +79,6 @@
 
 
   function createChart(series,title_text) {
-  	alert('I am being called');
 	chart = new Highcharts.Chart({
 	chart : {
 			renderTo : 'container',
@@ -140,7 +147,6 @@
 	function datetime_to_epoch(datetime)
 	{
 		var aDate = datetime.split('/');
-		alert(aDate);
     	var epoch = new Date(aDate[2] + "," + aDate[0] + "," + aDate[1]).getTime() / 1000;
     	return epoch;
 	}
@@ -149,10 +155,21 @@
 		
 		var start=datetime_to_epoch($("#start_date").val());
 		var end=datetime_to_epoch($("#end_date").val());
+		var sensor=$('input:radio[name=sensor]:checked').val();
 
-		alert("Pressed!");
-		var qu={"start":start,"end":end,"parameters":["W1","W2"],"sensor":"smart_meter"};
-		alert(JSON.stringify(qu));
+		//Finding selected parameters for sensor
+
+		var aa=$("input:checkbox:checked");
+		alert(JSON.stringify(aa));
+		/*$("input:checkbox:checked").each(function() 
+   			 {
+     		  alert( $(this).val());
+     		  alert(JSON.stringify($this));
+    		});
+*/
+
+		//alert(JSON.stringify(n));
+		var qu={"start":start,"end":end,"parameters":["W1","W2"],"sensor":sensor};
 		$.ajax({
 			  type: "POST",
 			  contentType: "application/json; charset=utf-8",
