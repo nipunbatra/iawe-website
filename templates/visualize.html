@@ -157,10 +157,15 @@
 		var end=datetime_to_epoch($("#end_date").val());
 		var sensor=$('input:radio[name=sensor]:checked').val();
 
-		//Finding selected parameters for sensor
+		alert(sensor);
 
-		var aa=$("input:checkbox:checked");
-		alert(JSON.stringify(aa));
+		//Finding selected parameters for sensor
+		var selected = new Array();
+			$('.params input:checked').each(function() {
+			console.log($(this));
+    		selected.push($(this).attr('id'));
+			});
+		alert(selected);
 		/*$("input:checkbox:checked").each(function() 
    			 {
      		  alert( $(this).val());
@@ -169,7 +174,7 @@
 */
 
 		//alert(JSON.stringify(n));
-		var qu={"start":start,"end":end,"parameters":["W1","W2"],"sensor":sensor};
+		var qu={"start":start,"end":end,"parameters":selected,"sensor":sensor};
 		$.ajax({
 			  type: "POST",
 			  contentType: "application/json; charset=utf-8",
