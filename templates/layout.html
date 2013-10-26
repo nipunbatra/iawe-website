@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iAWE</title>   
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script> 
+    <script type=text/javascript>
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        jQuery.ajaxSetup({
+          async : false
+        });
+    </script>
+    <strong><link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"></strong>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">iAWE</h1>
+        <strong><nav>
+          <ul class="menu">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('visualize') }}">Visualize</a></li>
+
+            <li><a href="{{ url_for('about') }}">About</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+     
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+   <footer>
+      <div class="container">
+        <strong><nav>
+          <ul class="menu">
+            <li><a href="http://energy.iiitd.edu.in">Energy Lab, IIIT Delhi</a></li>
+            <li><a href="{{ url_for('about') }}">NESL, UCLA</a></li>
+          </ul>
+        </nav></strong>
+      </div>
+    </footer>
+</html>

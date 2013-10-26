@@ -1,0 +1,173 @@
+{% extends "layout.html" %}
+{% block content %}
+  
+  <div id="sidebar">
+		<span>Select Sensor</span>
+	  	<br/>
+	  	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show()' >Smart Meter</input>
+	  	<br/>
+	  	<span id="smart_meter" class="params">
+	  		<input id="W" type="checkbox">W</input><br/>
+	  		<input id="W1" type="checkbox">W1</input><br/>
+	  		<input id="W2" type="checkbox">W2</input><br/>
+	  	</span>
+	  	<br/>
+		<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show()' >JPlug</input>
+		<br/>
+		<span id="jplug" class="params">
+	  		<input id="AC1" type="checkbox">AC1</input><br/>
+	  		<input id="Refrigerator" type="checkbox">Refrigerator</input><br/>
+	  		<input id="TV" type="checkbox">Television</input>
+	  	</span>
+		<br/>
+	<input type="radio" name="sensor" value="ct" onchange='$(".params").hide();$("#ct").show()' >CT</input>
+	  	<br/>
+	  	<span id="ct" class="params">
+	  		<input id="1" type="checkbox">1</input><br/>
+	  		<input id="2" type="checkbox">2</input><br/>
+	  	</span>
+	  	<br/>
+
+		<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show()' >Water Meter</input>
+	  	<br/>
+	  	<span id="water_meter" class="params">
+	  		<input id="1" type="checkbox">Supply</input><br/>
+	  		<input id="2" type="checkbox">Outlet</input><br/>
+	  	</span>
+	  	<br/>
+	
+		<p>Start Date: <input type="text" id="start_date" /></p>
+	  	<p>End Date: <input type="text" id="end_date" /></p>
+
+	 	<button type="button" id="query">View Data</button>
+
+	 	<br/>
+	  	
+</div>
+
+  <div id="container" style="width:70%; height:400px;"></div>
+
+  <script type="text/javascript">
+
+  $(".params").hide();
+  //By default smart meter is selected
+  $('input:radio[name=sensor]')[0].checked = true;
+
+  //Show the parameters for smart_meter
+  $("#smart_meter").show();
+
+  
+
+  var chart;
+ 
+  $("#start_date").datepicker();
+  $("#end_date").datepicker();
+  $("#start_date").val('07/05/2013');
+  $("#end_date").val('07/06/2013');
+
+  //Show the span only for the sensor for which we have chosen
+
+  // 1. Finding which input is selected
+
+
+  function createChart(series,title_text) {
+  	alert('I am being called');
+	chart = new Highcharts.Chart({
+	chart : {
+			renderTo : 'container',
+			type : 'line',
+			marginRight : 60,
+			marginBottom : 25,
+			useUTC : false,
+			zoomType : 'xy',
+			events : {
+					}
+				},
+			title : {
+				text : title_text,
+				x : -20 //center
+				},
+			subtitle : {
+				text : '',
+				x : -20
+				},
+			xAxis : {
+				type : 'datetime',
+				},
+			plotOptions : {
+				line : {
+					marker : {
+						enabled : false
+						}
+					}
+				},
+			yAxis : {
+				title : {
+					text : 'Readings'
+						},
+					plotLines : [{
+					value : 0,
+					width : 1.5,
+					color : '#808080',
+					line : {
+						marker : {
+							enabled : true
+							}
+							}
+						}]
+					},
+			tooltip : {
+				formatter : function() {
+					return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%e%b', this.x) + ': ' + this.y;
+						}
+				},
+			credits : {
+				enabled : false
+				},
+			legend : {
+				layout : 'vertical',
+				align : 'right',
+				verticalAlign : 'top',
+				x : 0,
+				y : 100,
+				borderWidth : 2
+				},
+			series : series
+		});
+		
+	}
+
+	function datetime_to_epoch(datetime)
+	{
+		var aDate = datetime.split('/');
+		alert(aDate);
+    	var epoch = new Date(aDate[2] + "," + aDate[0] + "," + aDate[1]).getTime() / 1000;
+    	return epoch;
+	}
+
+	$("#query").click(function() {
+		
+		var start=datetime_to_epoch($("#start_date").val());
+		var end=datetime_to_epoch($("#end_date").val());
+
+		alert("Pressed!");
+		var qu={"start":start,"end":end,"parameters":["W1","W2"],"sensor":"smart_meter"};
+		alert(JSON.stringify(qu));
+		$.ajax({
+			  type: "POST",
+			  contentType: "application/json; charset=utf-8",
+			  url: "/query",
+			  data: JSON.stringify(qu),
+			  success: function (data) {
+			    console.log(data);
+			    createChart(data,qu['sensor']);
+			    
+			  },
+			  dataType: "json"
+			});
+	});
+
+  	
+
+  </script>
+{% endblock %}
