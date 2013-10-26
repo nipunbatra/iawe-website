@@ -1,15 +1,3 @@
-from flask import Flask, render_template,json,request
-import pandas as pd
-import numpy as np
-import MySQLdb
-import pandas.io.sql as psql
-
-from mapping import water_meter_mapping
-
-mysql_conn={}
-mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
-mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
-mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
 
 
 def process_smart_meter(data):
@@ -41,7 +29,7 @@ def process_water_meter(data):
 	series=[]
 	for param in data['parameters']:
 		query='select timestamp,state from water_data where timestamp between %d and %d and meter_id= %d;' %(data['start'],data['end'],int(param))
-		result=psql.frame_query(query,mysql_conn['water_meter'])
+		result=psql.frame_query(query,mysql_conn[data['water_meter']])
 		result.index=pd.to_datetime(result.timestamp*1e9)
 		result=result.drop('timestamp',1)
 		freq_downsampled=calculate_downsampling_frequency(result)
@@ -55,50 +43,5 @@ def process_water_meter(data):
 		temp[:,0]=x
 		for key in result:
 			temp[:,1]=result[key].values    
-			series.append({'name':key+" "+water_meter_mapping[param],'data':temp.tolist()})
+			series.append({'name':key,'data':temp.tolist()})
 	return json.dumps(series)
-
-
-
-app = Flask(__name__)
-  
-def calculate_downsampling_frequency(df, threshold_points=15000):
-    num_columns=df.columns.size
-    num_rows=int(np.sum(df.count()))
-    if num_rows>threshold_points:
-        factor_in_seconds=int(num_rows/threshold_points)
-        print "DOWNSAMPLING: "+str(factor_in_seconds)
-        return str(factor_in_seconds)+'s'
-
-    else:
-        return None
-
-
-
-@app.route('/')
-def home():
-    return render_template('home.html')
-  
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/visualize')
-def visualize():
-    return render_template('visualize.html')
-
-@app.route('/query',methods=['POST'])
-def query():
-	data=json.loads(request.data)
-	print data
-	if data["sensor"]=="smart_meter":
-		smart_meter_response=process_smart_meter(data)
-		return smart_meter_response
-	elif data["sensor"]=="water_meter":
-		water_meter_response=process_water_meter(data)
-		return water_meter_response
-	
-
-  
-if __name__ == '__main__':
-    app.run(debug=True)

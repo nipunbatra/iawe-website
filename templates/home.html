@@ -2,6 +2,19 @@
 {% block content %}
   <div class="jumbo">
     <h3>iAWE:<b>I</b>ndian Dataset for <b>A</b>mbient Water and Energy <h3>
-    <img src="{{ url_for('static', filename='img/overall_deployment.jpg') }}" width="60%" height="60%">
+    <div id="slider">
+    	<div class="slide1">
+    		 <img src="{{ url_for('static', filename='img/overall_deployment.jpg') }}" width="60%" height="60%">
+    		 <h5>Overall Home Deployment Setup</h5>
+    	</div>
+    	<div class="slide2">
+    		 <img src="{{ url_for('static', filename='img/outage_by_hour.png') }}" width="60%" height="60%">
+    		 <h5>How much Power do thy lose?</h5>
+    	</div>
+    </div>
+   
   </div>
+  <script type="text/javascript">
+  	$('#slider').leanSlider();
+  </script>
 {% endblock %}
