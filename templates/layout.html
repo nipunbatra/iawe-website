@@ -7,6 +7,9 @@
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script> 
     <script src="{{ url_for('static', filename='js/lean-slider.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/noty/jquery.noty.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/noty/layouts/center.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='js/noty/themes/default.js') }}"></script>
     <script type=text/javascript>
         var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
         jQuery.ajaxSetup({
@@ -16,6 +19,8 @@
     <strong>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/lean-slider.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/sample-styles.css') }}">
+
     </strong>
   </head>
   <body>

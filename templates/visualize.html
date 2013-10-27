@@ -153,6 +153,11 @@
 
 	$("#query").click(function() {
 		
+		var n = noty({text: 'noty - a jquery notification library!'
+					,type:'alert'
+					,theme: 'defaultTheme',
+					location:'center'});
+
 		var start=datetime_to_epoch($("#start_date").val());
 		var end=datetime_to_epoch($("#end_date").val());
 		var sensor=$('input:radio[name=sensor]:checked').val();

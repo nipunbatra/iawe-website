@@ -1,20 +1,29 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div class="jumbo">
+   <div class="slider-wrapper">
+
     <h3>iAWE:<b>I</b>ndian Dataset for <b>A</b>mbient Water and Energy <h3>
     <div id="slider">
     	<div class="slide1">
-    		 <img src="{{ url_for('static', filename='img/overall_deployment.jpg') }}" width="60%" height="60%">
-    		 <h5>Overall Home Deployment Setup</h5>
+    		 <a href="http://www.google.com" target="blank"></><img src="{{ url_for('static', filename='img/overall_deployment.jpg') }}" width="320px" height="400px" border="0"/></a>
+    		 <h6>Overall Home Deployment Setup</h6>
     	</div>
     	<div class="slide2">
-    		 <img src="{{ url_for('static', filename='img/outage_by_hour.png') }}" width="60%" height="60%">
-    		 <h5>How much Power do thy lose?</h5>
+    		 <a href="http://www.google.com" target="blank"><img src="{{ url_for('static', filename='img/outage_by_hour.png') }}" width="320px" height="400px"/></a>
+    		 <h6>How much Power do thy lose?</h6>
     	</div>
+
+
     </div>
-   
+    <div id="slider-direction-nav"></div>
+    <div id="slider-control-nav"></div>
+   <h6>**Click on any image to know more</h6>
   </div>
   <script type="text/javascript">
-  	$('#slider').leanSlider();
+  	$('#slider').leanSlider({
+            directionNav: '#slider-direction-nav',
+            controlNav: '#slider-control-nav'
+        });
+
   </script>
 {% endblock %}
