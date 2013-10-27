@@ -1,0 +1,145 @@
+{% extends "layout.html" %}
+{% block content %}
+  
+  
+  <div id="sidebar">
+		Select any number of sensors across the following. You can press 'Ctrl' to select multiple entries from the dropdown. <br/>						
+<label>Select any number of MCB(s).<br/>
+</label><a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/circuits.md">More info</a>
+	<select multiple="multiple" style="height: 70px;" id=ct_id>
+  		<option value=1>1</option>
+  		<option value=2>2</option>
+ 	 	<option value=3>3</option>
+ 		 
+	</select>
+	<br/>
+	<br/>
+		<label>Select any number of Multisensor(s). </label> <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/multisensor.md">More info</a>
+	<select size=1 multiple="multiple" style="height: 70px;" id=node_id>
+  		<option value=2>2</option>
+  		<option value=3>3</option>
+ 	 	<option value=4>4</option>
+ 	 	<option value=5>5</option>
+ 	 	<option value=6>6</option>
+ 	 	<option value=7>7</option>
+ 		 
+	</select>
+	<br/>
+	<br/>
+	<label>Select jPlug ID.</label> <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/jplug_appliance.md" >More info</a>
+	<select multiple="multiple" style="height: 70px;"  id=jplug_id>
+  		<option value="001EC00CC49C">001EC00CC49C</option>
+  		<option value="001EC00CC49F">001EC00CC49F</option>
+ 	 	<option value="001EC00CC4A1">001EC00CC4A1</option>
+ 		<option value="001EC00D7A18">001EC00D7A18</option>
+  		<option value="001EC00CC49D">001EC00CC49D</option>
+  		<option value="001EC00CC4A0">001EC00CC4A0</option>
+  		<option value="001EC00CC4AD">001EC00CC4AD</option>
+  		<option value="001EC00D7A1D">001EC00D7A1D</option>
+		<option value="001EC00D7A1C">001EC00D7A1C</option>
+		<option value="001EC00E6BBD">001EC00E6BBD</option>
+		<option value="001EC00E6BB6">001EC00E6BB6</option>
+	</select>		
+						<br/><br/>
+									
+										Time duration <div id="slider-range" style="width:300px"></div>
+										<br/>
+										
+	<button id="view_data" class="button">View</button>
+
+<span id="amount"></span>
+									</section>
+								</section>
+					
+</div>
+  <div id="container" style="width:70%; height:100%px;">
+  		 <img id="staticImage"></img>
+
+  </div>
+
+  <script type="text/javascript">
+  $( "#amount" ).text("12:20:00-15:20:00");
+  //$("#staticImage").hide();
+	var start_time;
+	var end_time;
+	window.start_time=1375599000;
+    window.end_time= 1375609800;	
+				 function fun(d)
+					{
+					return String(d.getHours())+":"+String(d.getMinutes())+":"+String(d.getSeconds());
+					}
+
+     $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 10800,
+      step:60,
+      values: [ 0, 10800 ],
+      slide: function( event, ui ) {
+		  window.start_time=1375599000+ui.values[ 0 ];
+		  window.end_time=1375599000+ui.values[ 1]
+        jQuery( "#amount" ).text( fun(new Date(new Date(2013,7,4,12,20).getTime() + ui.values[ 0 ]*1000)) + "-"+ fun(new Date(new Date(2013,7,4,12,20).getTime() + ui.values[ 1 ]*1000)));
+      }
+    });
+
+     jQuery(function() {
+				jQuery("#view_data").click(function() {
+					
+					//showNoty("Loading..","center",false);
+
+					var node_id;
+
+					
+					ct_id=jQuery("#ct_id").val();
+					node_id=jQuery("#node_id").val();
+					jplug_id=jQuery("#jplug_id").val();
+					//start_time=datetimeToEpoch(jQuery("#start_date_time").val());
+					//end_time=datetimeToEpoch(jQuery("#end_date_time").val());
+
+					var obj={};
+					alert(window.start_time);
+					obj["start_time"]=window.start_time;
+					obj["end_time"]=window.end_time;
+					obj["ct_id"]=ct_id;
+					obj["node_id"]=node_id;
+					obj["jplug_id"]=jplug_id;
+									
+					var receivedData={};
+					var temp="http://"+document.location.hostname+":"+document.location.port+"/";
+					$.ajax({
+			  		type: "POST",
+			  		contentType: "application/json; charset=utf-8",
+			  		url: "/labeled_query",
+			  		data: JSON.stringify(obj),
+			  		success: function (data) {
+			   		 //console.log(data);
+			   		 
+					//alert(JSON.stringify(data));	
+					var filename=data["filename"];
+
+					var no_data=data["no_data"];
+					if (no_data.length>0)
+						{
+							
+							//showNoty("No data found for following sensors: "+no_data,"top",true);
+							
+							
+					}
+
+					$("#staticImage").attr("src","../static/img/temp/"+filename);
+
+					
+					$("#staticImage").show();		    
+			  },
+			  dataType: "json"
+			});
+					
+					
+					
+					
+
+				});
+
+			});
+     </script>
+{% endblock %}
