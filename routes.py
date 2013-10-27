@@ -10,6 +10,8 @@ mysql_conn={}
 mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
 mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
 mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
+mysql_conn['multisensor']=MySQLdb.connect(user='root',passwd='password',db='multisensor');
+
 
 
 def process_smart_meter(data):
@@ -82,8 +84,8 @@ def process_jplug(data):
 def process_multisensor(data):
 	series=[]
 	for param in data['parameters']:
-		query='select timestamp,temperature from water_data where timestamp between %d and %d and meter_id= %d;' %(data['start'],data['end'],int(param))
-		result=psql.frame_query(query,mysql_conn['water_meter'])
+		query='select timestamp,temp,light from light_temp where timestamp between %d and %d and node_id= %d;' %(data['start'],data['end'],int(param))
+		result=psql.frame_query(query,mysql_conn['multisensor'])
 		result.index=pd.to_datetime(result.timestamp*1e9)
 		result=result.drop('timestamp',1)
 		freq_downsampled=calculate_downsampling_frequency(result)
@@ -98,6 +100,7 @@ def process_multisensor(data):
 		for key in result:
 			temp[:,1]=result[key].values    
 			series.append({'name':key+" "+water_meter_mapping[param],'data':temp.tolist()})
+
 	return json.dumps(series)
 
 
@@ -142,6 +145,9 @@ def query():
 	elif data["sensor"]=="jplug":
 		jplug_response=process_jplug(data)
 		return jplug_response
+	elif data["sensor"]=="multisensor":
+		multisensor_response=process_multisensor(data)
+		return multisensor_response
 
 	
 
