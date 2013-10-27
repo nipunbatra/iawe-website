@@ -4,13 +4,37 @@ import numpy as np
 import MySQLdb
 import pandas.io.sql as psql
 
-from mapping import water_meter_mapping,jplug_mapping
+from mapping import water_meter_mapping,jplug_mapping,multisensor_mapping
+
+import prettyplotlib as ppl
+
+# prettyplotlib imports 
+from prettyplotlib import plt
+from prettyplotlib import mpl
+from prettyplotlib import brewer2mpl
+
+from threading import Lock
+lock = Lock()
+import random
 
 mysql_conn={}
 mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
 mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
 mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
 mysql_conn['multisensor']=MySQLdb.connect(user='root',passwd='password',db='multisensor');
+
+smart_meter_data=pd.read_csv('../dataset/smart_meter.csv',index_col=0)['W']
+ct_data=pd.read_csv('../dataset/ct_data_controlled.csv',index_col=0,skipinitialspace=True,names=['id','current'])
+light_temp_data=pd.read_csv('../dataset/light_temp.csv',index_col=0,names=['node','light','temp'])
+jplug_data=pd.read_csv('../dataset/jplug.csv',index_col=0,names=['frequency','voltage','real','energy','cost','current','reactive','apparent','pf','phase','jplug_id'])
+pir_data=pd.read_csv('../dataset/pir.csv',index_col=0,names=['node'])
+
+
+
+import random, string
+
+def randomword(length):
+	return ''.join(random.choice(string.lowercase) for i in range(length))
 
 
 
@@ -99,7 +123,7 @@ def process_multisensor(data):
 		temp[:,0]=x
 		for key in result:
 			temp[:,1]=result[key].values    
-			series.append({'name':key+" "+water_meter_mapping[param],'data':temp.tolist()})
+			series.append({'name':key+" "+multisensor_mapping[param],'data':temp.tolist()})
 
 	return json.dumps(series)
 

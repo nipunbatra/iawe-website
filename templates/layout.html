@@ -6,6 +6,8 @@
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script> 
+    <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+
     <script src="{{ url_for('static', filename='js/lean-slider.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/noty/jquery.noty.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='js/noty/layouts/center.js') }}"></script>
@@ -51,7 +53,8 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">iAWE</h1>
+        <h1 class="logo" style="font-family: 'Sofia'">iAWE 
+</h1>
         <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -73,7 +76,7 @@
         <strong><nav>
           <ul class="menu">
             <li><a href="http://energy.iiitd.edu.in">Energy Lab, IIIT Delhi</a></li>
-            <li><a href="{{ url_for('about') }}">NESL, UCLA</a></li>
+            <li><a href="http://nesl.ee.ucla.edu">NESL, UCLA</a></li>
           </ul>
         </nav></strong>
       </div>

@@ -15,3 +15,11 @@ jplug_mapping={
 	"ac1":"001EC00D7A1C",
 	"filter":"001EC00E6BBD"
 }
+
+multisensor_mapping={
+	"2":"gf_big",
+	"3":"gf_small",
+	"4":"ff_small",
+	"6":"ff_big",
+	"7":"sf"
+}
