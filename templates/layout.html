@@ -1,79 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>iAWE</title>   
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<head>
+  <title>iAWE</title>   
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="http://code.highcharts.com/highcharts.js"></script> 
-    <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
+  <script src="http://code.highcharts.com/highcharts.js"></script> 
+  <link href='http://fonts.googleapis.com/css?family=Sofia' rel='stylesheet' type='text/css'>
 
-    <script src="{{ url_for('static', filename='js/lean-slider.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/noty/jquery.noty.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/noty/layouts/center.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static',filename='js/noty/themes/default.js') }}"></script>
-    <script type=text/javascript>
-        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-        jQuery.ajaxSetup({
-          async : false
-        });
-        
+  <script src="{{ url_for('static', filename='js/lean-slider.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static',filename='js/noty/jquery.noty.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static',filename='js/noty/layouts/center.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static',filename='js/noty/themes/default.js') }}"></script>
+  <script type=text/javascript>
+    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    jQuery.ajaxSetup({
+      async : false
+    });
+    
         //var n = noty({text: 'noty - a jquery notification library!'});
 
         function showNoty(text, position, closeButton) {
-        var noty_id = noty({
-                "text" : text,
-                "theme" : "noty_theme_twitter",
-                "layout" : position,
-                "type" : "error",
-                "animateOpen" : {
-                        "height" : "toggle"
-                },
-                "animateClose" : {
-                        "height" : "toggle"
-                },
-                "speed" : 0,
-                "timeout" : 0,
-                "closeButton" : closeButton,
-                "closeOnSelfClick" : true,
-                "closeOnSelfOver" : false,
-                
-        });
+          var noty_id = noty({
+            "text" : text,
+            "theme" : "noty_theme_twitter",
+            "layout" : position,
+            "type" : "error",
+            "animateOpen" : {
+              "height" : "toggle"
+            },
+            "animateClose" : {
+              "height" : "toggle"
+            },
+            "speed" : 0,
+            "timeout" : 0,
+            "closeButton" : closeButton,
+            "closeOnSelfClick" : true,
+            "closeOnSelfOver" : false,
+            
+          });
 
-        return noty_id;
-}
-    </script>
-    <strong>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/lean-slider.css') }}">
+          return noty_id;
+        }
+      </script>
+      <strong>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/lean-slider.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/sample-styles.css') }}">
 
-    </strong>
-  </head>
-  <body>
-    <header>
+      </strong>
+    </head>
+    <body>
+      <header>
+        <div class="container">
+          <h1 class="logo" style="font-family: 'Sofia'">iAWE 
+          </h1>
+          <strong><nav>
+            <ul class="menu">
+              <li><a href="{{ url_for('home') }}">Home</a></li>
+              <li><a href="{{ url_for('visualize') }}">Visualize</a></li>
+              <li><a href="{{ url_for('labeled') }}">Labeled Dataset</a></li>
+
+
+              <li><a href="{{ url_for('about') }}">About</a></li>
+            </ul>
+          </nav></strong>
+        </div>
+      </header>
+      
       <div class="container">
-        <h1 class="logo" style="font-family: 'Sofia'">iAWE 
-</h1>
-        <strong><nav>
-          <ul class="menu">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('visualize') }}">Visualize</a></li>
-            <li><a href="{{ url_for('labeled') }}">Labeled Dataset</a></li>
-
-
-            <li><a href="{{ url_for('about') }}">About</a></li>
-          </ul>
-        </nav></strong>
+        {% block content %}
+        {% endblock %}
       </div>
-    </header>
-     
-    <div class="container">
-      {% block content %}
-      {% endblock %}
-    </div>
-  </body>
-   <footer>
+    </body>
+    <footer>
       <div class="container">
         <strong><nav>
           <ul class="menu">
@@ -83,4 +83,4 @@
         </nav></strong>
       </div>
     </footer>
-</html>
+    </html>

@@ -1,71 +1,71 @@
 {% extends "layout.html" %}
 {% block content %}
-  
-  
-  <div id="sidebar">
-		<span>Select Sensor</span>
-	  	<br/>
-	  	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show();uncheck();' >Smart Meter</input>
-	  	<br/>
-	  	<span id="smart_meter" class="params">
-	  		<input id="W" type="checkbox">W</input><br/>
-	  		<input id="W1" type="checkbox">W1</input><br/>
-	  		<input id="W2" type="checkbox">W2</input><br/>
-	  	</span>
-	  	<br/>
-		<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show();uncheck();' >JPlug</input>
-		<br/>
-		<span id="jplug" class="params">
-	  		<input id="ac1" type="checkbox">AC1</input><br/>
-	  		<input id="ac2" type="checkbox">AC2</input><br/>
-	  		<input id="refrigerator" type="checkbox">Refrigerator</input><br/>
-	  		<input id="tv" type="checkbox">Television</input>
-	  	</span>
-		<br/>
+
+
+<div id="sidebar">
+	<span>Select Sensor</span>
+	<br/>
+	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show();uncheck();' >Smart Meter</input>
+	<br/>
+	<span id="smart_meter" class="params">
+		<input id="W" type="checkbox">W</input><br/>
+		<input id="W1" type="checkbox">W1</input><br/>
+		<input id="W2" type="checkbox">W2</input><br/>
+	</span>
+	<br/>
+	<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show();uncheck();' >JPlug</input>
+	<br/>
+	<span id="jplug" class="params">
+		<input id="ac1" type="checkbox">AC1</input><br/>
+		<input id="ac2" type="checkbox">AC2</input><br/>
+		<input id="refrigerator" type="checkbox">Refrigerator</input><br/>
+		<input id="tv" type="checkbox">Television</input>
+	</span>
+	<br/>
 	<input type="radio" name="sensor" value="multisensor" onchange='$(".params").hide();$("#multisensor").show();uncheck();' >Multisensor</input>
-	  	<br/>
-	  	<span id="multisensor" class="params">
-	  		<input id="2" type="checkbox">Ground floor drawing room</input><br/>
-	  		<input id="3" type="checkbox">Ground floor small room</input><br/>
-	  		<input id="4" type="checkbox">First floor small room</input><br/>
-	  		<input id="6" type="checkbox">First floor big room</input><br/>
-	  		<input id="7" type="checkbox">Second floor</input><br/>
-	  	</span>
-	  	<br/>
+	<br/>
+	<span id="multisensor" class="params">
+		<input id="2" type="checkbox">Ground floor drawing room</input><br/>
+		<input id="3" type="checkbox">Ground floor small room</input><br/>
+		<input id="4" type="checkbox">First floor small room</input><br/>
+		<input id="6" type="checkbox">First floor big room</input><br/>
+		<input id="7" type="checkbox">Second floor</input><br/>
+	</span>
+	<br/>
 
-		<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show();uncheck();' >Water Meter</input>
-	  	<br/>
-	  	<span id="water_meter" class="params">
-	  		<input id="1" type="checkbox">Supply</input><br/>
-	  		<input id="2" type="checkbox">Outlet</input><br/>
-	  	</span>
-	  	<br/>
+	<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show();uncheck();' >Water Meter</input>
+	<br/>
+	<span id="water_meter" class="params">
+		<input id="1" type="checkbox">Supply</input><br/>
+		<input id="2" type="checkbox">Outlet</input><br/>
+	</span>
+	<br/>
 	
-		<p>Start Date: <input type="text" id="start_date" /></p>
-	  	<p>End Date: <input type="text" id="end_date" /></p>
+	<p>Start Date: <input type="text" id="start_date" /></p>
+	<p>End Date: <input type="text" id="end_date" /></p>
 
-	 	<button type="button" id="query">View Data</button>
+	<button type="button" id="query">View Data</button>
 
-	 	<br/>
-	  	
+	<br/>
+	
 </div>
 
-  <div id="container" style="width:70%; height:400px;"></div>
+<div id="container" style="width:70%; height:400px;"></div>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
     // When ajaxStart is fired, add 'loading' to body class
-        $( document ).ajaxStart(function()  { 
-        $(this).addClass("loading"); 
-        });
+    $( document ).ajaxStart(function()  { 
+    	$(this).addClass("loading"); 
+    });
          // When ajaxStop is fired, rmeove 'loading' from body class
          $( document ).ajaxStart(function()  { 
-        $(this).removeClass("loading"); 
-        });
+         	$(this).removeClass("loading"); 
+         });
 
 
 
-  $(".params").hide();
+         $(".params").hide();
   //By default smart meter is selected
   $('input:radio[name=sensor]')[0].checked = true;
 
@@ -75,15 +75,15 @@
   function uncheck()
   {
   	$('input[type=checkbox]').each(function() 
-	{ 
-        this.checked = false; 
-	}); 
+  	{ 
+  		this.checked = false; 
+  	}); 
   }
 
   
 
   var chart;
- 
+  
   $("#start_date").datepicker();
   $("#end_date").datepicker();
   $("#start_date").val('07/05/2013');
@@ -95,58 +95,58 @@
 
 
   function createChart(series,title_text) {
-	chart = new Highcharts.Chart({
-	chart : {
-			renderTo : 'container',
-			type : 'line',
-			marginRight : 130,
-			marginBottom : 25,
-			useUTC : false,
-			zoomType : 'xy',
-			events : {
-					}
-				},
-			title : {
-				text : title_text,
+  	chart = new Highcharts.Chart({
+  		chart : {
+  			renderTo : 'container',
+  			type : 'line',
+  			marginRight : 130,
+  			marginBottom : 25,
+  			useUTC : false,
+  			zoomType : 'xy',
+  			events : {
+  			}
+  		},
+  		title : {
+  			text : title_text,
 				x : -20 //center
-				},
+			},
 			subtitle : {
 				text : '',
 				x : -20
-				},
+			},
 			xAxis : {
 				type : 'datetime',
-				},
+			},
 			plotOptions : {
 				line : {
 					marker : {
 						enabled : false
-						}
 					}
-				},
+				}
+			},
 			yAxis : {
 				title : {
 					text : 'Readings'
-						},
-					plotLines : [{
+				},
+				plotLines : [{
 					value : 0,
 					width : 1.5,
 					color : '#808080',
 					line : {
 						marker : {
 							enabled : true
-							}
-							}
-						}]
-					},
+						}
+					}
+				}]
+			},
 			tooltip : {
 				formatter : function() {
 					return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%e%b', this.x) + ': ' + this.y;
-						}
-				},
+				}
+			},
 			credits : {
 				enabled : false
-				},
+			},
 			legend : {
 				layout : 'vertical',
 				align : 'right',
@@ -154,41 +154,41 @@
 				x : 0,
 				y : 100,
 				borderWidth : 2
-				},
+			},
 			series : series
 		});
-		
-	}
 
-	function datetime_to_epoch(datetime)
-	{
-		var aDate = datetime.split('/');
-    	var epoch = new Date(aDate[2] + "," + aDate[0] + "," + aDate[1]).getTime() / 1000;
-    	return epoch;
-	}
+}
 
-	$("#query").click(function() {
-		
+function datetime_to_epoch(datetime)
+{
+	var aDate = datetime.split('/');
+	var epoch = new Date(aDate[2] + "," + aDate[0] + "," + aDate[1]).getTime() / 1000;
+	return epoch;
+}
+
+$("#query").click(function() {
+	
 		//showNoty("hello","center",true);
 		//var n = noty({text: 'Hang Tight! Generating your plot'
 		//			,layout:'center'});
 
-		$('#content').removeClass('fullwidth').delay(10).queue(function(next){
-				$(this).addClass('fullwidth');
-		        next();});
+$('#content').removeClass('fullwidth').delay(10).queue(function(next){
+	$(this).addClass('fullwidth');
+	next();});
 
-		var start=datetime_to_epoch($("#start_date").val());
-		var end=datetime_to_epoch($("#end_date").val());
-		var sensor=$('input:radio[name=sensor]:checked').val();
+var start=datetime_to_epoch($("#start_date").val());
+var end=datetime_to_epoch($("#end_date").val());
+var sensor=$('input:radio[name=sensor]:checked').val();
 
 		//alert(sensor);
 
 		//Finding selected parameters for sensor
 		var selected = new Array();
-			$('.params input:checked').each(function() {
+		$('.params input:checked').each(function() {
 			//console.log($(this));
-    		selected.push($(this).attr('id'));
-			});
+			selected.push($(this).attr('id'));
+		});
 		//alert(selected);
 		/*$("input:checkbox:checked").each(function() 
    			 {
@@ -200,21 +200,21 @@
 		//alert(JSON.stringify(n));
 		var qu={"start":start,"end":end,"parameters":selected,"sensor":sensor};
 		$.ajax({
-			  type: "POST",
-			  contentType: "application/json; charset=utf-8",
-			  url: "/query",
-			  data: JSON.stringify(qu),
-			  success: function (data) {
+			type: "POST",
+			contentType: "application/json; charset=utf-8",
+			url: "/query",
+			data: JSON.stringify(qu),
+			success: function (data) {
 			    //console.log(data);
 			    $.noty.closeAll()
 			    createChart(data,qu['sensor']);
 			    
-			  },
-			  dataType: "json"
-			});
+			},
+			dataType: "json"
+		});
 	});
 
-  	
 
-  </script>
+
+</script>
 {% endblock %}
