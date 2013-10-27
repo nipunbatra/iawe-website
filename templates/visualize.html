@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
   
+  
   <div id="sidebar">
 		<span>Select Sensor</span>
 	  	<br/>
@@ -15,9 +16,10 @@
 		<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show();uncheck();' >JPlug</input>
 		<br/>
 		<span id="jplug" class="params">
-	  		<input id="AC1" type="checkbox">AC1</input><br/>
-	  		<input id="Refrigerator" type="checkbox">Refrigerator</input><br/>
-	  		<input id="TV" type="checkbox">Television</input>
+	  		<input id="ac1" type="checkbox">AC1</input><br/>
+	  		<input id="ac2" type="checkbox">AC2</input><br/>
+	  		<input id="refrigerator" type="checkbox">Refrigerator</input><br/>
+	  		<input id="tv" type="checkbox">Television</input>
 	  	</span>
 		<br/>
 	<input type="radio" name="sensor" value="multisensor" onchange='$(".params").hide();$("#multisensor").show();uncheck();' >Multisensor</input>
@@ -48,6 +50,17 @@
   <div id="container" style="width:70%; height:400px;"></div>
 
   <script type="text/javascript">
+
+    // When ajaxStart is fired, add 'loading' to body class
+        $( document ).ajaxStart(function()  { 
+        $(this).addClass("loading"); 
+        });
+         // When ajaxStop is fired, rmeove 'loading' from body class
+         $( document ).ajaxStart(function()  { 
+        $(this).removeClass("loading"); 
+        });
+
+
 
   $(".params").hide();
   //By default smart meter is selected
@@ -83,7 +96,7 @@
 	chart : {
 			renderTo : 'container',
 			type : 'line',
-			marginRight : 60,
+			marginRight : 130,
 			marginBottom : 25,
 			useUTC : false,
 			zoomType : 'xy',
@@ -153,24 +166,27 @@
 
 	$("#query").click(function() {
 		
-		var n = noty({text: 'noty - a jquery notification library!'
-					,type:'alert'
-					,theme: 'defaultTheme',
-					location:'center'});
+		//showNoty("hello","center",true);
+		//var n = noty({text: 'Hang Tight! Generating your plot'
+		//			,layout:'center'});
+
+		$('#content').removeClass('fullwidth').delay(10).queue(function(next){
+				$(this).addClass('fullwidth');
+		        next();});
 
 		var start=datetime_to_epoch($("#start_date").val());
 		var end=datetime_to_epoch($("#end_date").val());
 		var sensor=$('input:radio[name=sensor]:checked').val();
 
-		alert(sensor);
+		//alert(sensor);
 
 		//Finding selected parameters for sensor
 		var selected = new Array();
 			$('.params input:checked').each(function() {
-			console.log($(this));
+			//console.log($(this));
     		selected.push($(this).attr('id'));
 			});
-		alert(selected);
+		//alert(selected);
 		/*$("input:checkbox:checked").each(function() 
    			 {
      		  alert( $(this).val());
@@ -186,7 +202,8 @@
 			  url: "/query",
 			  data: JSON.stringify(qu),
 			  success: function (data) {
-			    console.log(data);
+			    //console.log(data);
+			    $.noty.closeAll()
 			    createChart(data,qu['sensor']);
 			    
 			  },

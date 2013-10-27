@@ -4,7 +4,7 @@ import numpy as np
 import MySQLdb
 import pandas.io.sql as psql
 
-from mapping import water_meter_mapping
+from mapping import water_meter_mapping,jplug_mapping
 
 mysql_conn={}
 mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
@@ -41,6 +41,48 @@ def process_water_meter(data):
 	series=[]
 	for param in data['parameters']:
 		query='select timestamp,state from water_data where timestamp between %d and %d and meter_id= %d;' %(data['start'],data['end'],int(param))
+		result=psql.frame_query(query,mysql_conn['water_meter'])
+		result.index=pd.to_datetime(result.timestamp*1e9)
+		result=result.drop('timestamp',1)
+		freq_downsampled=calculate_downsampling_frequency(result)
+		if freq_downsampled is not None:
+			result=result.resample(freq_downsampled, how='max')
+			result=result.dropna()
+		num_rows=len(result[result.columns[0]].values)
+		temp=np.empty((num_rows,2))
+		#Subtracting 5.5 hrs to ensure, we always get UTC time
+		x=result.index.astype(int)/1e6+5.5*60*60*1000
+		temp[:,0]=x
+		for key in result:
+			temp[:,1]=result[key].values    
+			series.append({'name':key+" "+water_meter_mapping[param],'data':temp.tolist()})
+	return json.dumps(series)
+
+def process_jplug(data):
+	series=[]
+	for param in data['parameters']:
+		query='select timestamp,active_power from jplug_data where timestamp between %d and %d and mac= "%s";' %(data['start'],data['end'],jplug_mapping[param])
+		result=psql.frame_query(query,mysql_conn['jplug'])
+		result.index=pd.to_datetime(result.timestamp*1e9)
+		result=result.drop('timestamp',1)
+		freq_downsampled=calculate_downsampling_frequency(result)
+		if freq_downsampled is not None:
+			result=result.resample(freq_downsampled, how='max')
+			result=result.dropna()
+		num_rows=len(result[result.columns[0]].values)
+		temp=np.empty((num_rows,2))
+		#Subtracting 5.5 hrs to ensure, we always get UTC time
+		x=result.index.astype(int)/1e6+5.5*60*60*1000
+		temp[:,0]=x
+		for key in result:
+			temp[:,1]=result[key].values    
+			series.append({'name':key+" "+param,'data':temp.tolist()})
+	return json.dumps(series)
+
+def process_multisensor(data):
+	series=[]
+	for param in data['parameters']:
+		query='select timestamp,temperature from water_data where timestamp between %d and %d and meter_id= %d;' %(data['start'],data['end'],int(param))
 		result=psql.frame_query(query,mysql_conn['water_meter'])
 		result.index=pd.to_datetime(result.timestamp*1e9)
 		result=result.drop('timestamp',1)
@@ -97,6 +139,10 @@ def query():
 	elif data["sensor"]=="water_meter":
 		water_meter_response=process_water_meter(data)
 		return water_meter_response
+	elif data["sensor"]=="jplug":
+		jplug_response=process_jplug(data)
+		return jplug_response
+
 	
 
   

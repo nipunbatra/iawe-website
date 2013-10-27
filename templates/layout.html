@@ -15,6 +15,31 @@
         jQuery.ajaxSetup({
           async : false
         });
+        
+        //var n = noty({text: 'noty - a jquery notification library!'});
+
+        function showNoty(text, position, closeButton) {
+        var noty_id = noty({
+                "text" : text,
+                "theme" : "noty_theme_twitter",
+                "layout" : position,
+                "type" : "error",
+                "animateOpen" : {
+                        "height" : "toggle"
+                },
+                "animateClose" : {
+                        "height" : "toggle"
+                },
+                "speed" : 0,
+                "timeout" : 0,
+                "closeButton" : closeButton,
+                "closeOnSelfClick" : true,
+                "closeOnSelfOver" : false,
+                
+        });
+
+        return noty_id;
+}
     </script>
     <strong>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
