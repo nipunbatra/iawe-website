@@ -47,25 +47,15 @@
 	<button type="button" id="query">View Data</button>
 
 	<br/>
-	
+
 </div>
 
 <div id="container" style="width:70%; height:400px;"></div>
 
 <script type="text/javascript">
 
-    // When ajaxStart is fired, add 'loading' to body class
-    $( document ).ajaxStart(function()  { 
-    	$(this).addClass("loading"); 
-    });
-         // When ajaxStop is fired, rmeove 'loading' from body class
-         $( document ).ajaxStart(function()  { 
-         	$(this).removeClass("loading"); 
-         });
-
-
-
-         $(".params").hide();
+   
+    $(".params").hide();
   //By default smart meter is selected
   $('input:radio[name=sensor]')[0].checked = true;
 
@@ -83,7 +73,7 @@
   
 
   var chart;
-  
+
   $("#start_date").datepicker();
   $("#end_date").datepicker();
   $("#start_date").val('07/05/2013');
@@ -149,7 +139,7 @@
 			},
 			legend : {
 				layout : 'vertical',
-				align : 'right',
+				align : 'left',
 				verticalAlign : 'top',
 				x : 0,
 				y : 100,
@@ -168,14 +158,13 @@ function datetime_to_epoch(datetime)
 }
 
 $("#query").click(function() {
-	
+
 		//showNoty("hello","center",true);
 		//var n = noty({text: 'Hang Tight! Generating your plot'
 		//			,layout:'center'});
 
-$('#content').removeClass('fullwidth').delay(10).queue(function(next){
-	$(this).addClass('fullwidth');
-	next();});
+$("#container").hide();
+
 
 var start=datetime_to_epoch($("#start_date").val());
 var end=datetime_to_epoch($("#end_date").val());
@@ -206,8 +195,10 @@ var sensor=$('input:radio[name=sensor]:checked').val();
 			data: JSON.stringify(qu),
 			success: function (data) {
 			    //console.log(data);
-			    $.noty.closeAll()
+			    //$.noty.closeAll()
 			    createChart(data,qu['sensor']);
+			    $("#container").show();
+
 			    
 			},
 			dataType: "json"

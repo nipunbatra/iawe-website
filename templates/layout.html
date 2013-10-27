@@ -13,11 +13,15 @@
   <script type="text/javascript" src="{{ url_for('static',filename='js/noty/layouts/center.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static',filename='js/noty/themes/default.js') }}"></script>
   <script type=text/javascript>
-    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+$( document ).ready(function() {
+  // Handler for .ready() called.
+  $('#content').hide();  
+
+});    var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     jQuery.ajaxSetup({
       async : false
     });
-    
+      
         //var n = noty({text: 'noty - a jquery notification library!'});
 
         function showNoty(text, position, closeButton) {
@@ -37,7 +41,7 @@
             "closeButton" : closeButton,
             "closeOnSelfClick" : true,
             "closeOnSelfOver" : false,
-            
+
           });
 
           return noty_id;
@@ -52,6 +56,7 @@
     </head>
     <body>
       <header>
+
         <div class="container">
           <h1 class="logo" style="font-family: 'Sofia'">iAWE 
           </h1>
@@ -67,7 +72,10 @@
           </nav></strong>
         </div>
       </header>
-      
+      <div id="content">
+          <span class="expand"></span>
+        </div>
+
       <div class="container">
         {% block content %}
         {% endblock %}
