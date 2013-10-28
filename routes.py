@@ -162,6 +162,14 @@ def visualize():
 def labeled():
 	return render_template('labeled.html')
 
+@app.route('/cite')
+def cite():
+	return render_template('cite.html')
+
+@app.route('/download')
+def download():
+	return render_template('download.html')
+
 @app.route('/query',methods=['POST'])
 def query():
 	data=json.loads(request.data)
