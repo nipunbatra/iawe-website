@@ -162,6 +162,10 @@ def examples():
 def visualize():
     return render_template('visualize.html')
 
+@app.route('/presentation')
+def presentation():
+    return render_template('presentation.html')
+
 @app.route('/labeled')
 def labeled():
 	return render_template('labeled.html')

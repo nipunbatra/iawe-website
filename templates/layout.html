@@ -45,6 +45,9 @@
         }
       </script>
       <strong>
+      
+
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/lean-slider.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/sample-styles.css') }}">
@@ -60,6 +63,7 @@
           <strong><nav>
             <ul class="menu">
               <li><a href="{{ url_for('home') }}">Home</a></li>
+              <li><a href="{{ url_for('presentation') }}">Presentation</a></li>
               <li><a href="{{ url_for('visualize') }}">Visualize</a></li>
               <li><a href="{{ url_for('labeled') }}">Labeled Dataset</a></li>
               <li><a href="{{ url_for('download') }}">Download Dataset</a></li>
@@ -67,10 +71,7 @@
 
               <li><a href="{{ url_for('cite') }}">Cite</a></li>
 
-
-
-
-              <li><a href="{{ url_for('about') }}">About</a></li>
+             
             </ul>
           </nav></strong>
         </div>
