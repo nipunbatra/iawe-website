@@ -154,6 +154,10 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/examples')
+def examples():
+    return render_template('examples.html')
+
 @app.route('/visualize')
 def visualize():
     return render_template('visualize.html')
@@ -331,4 +335,4 @@ def labeled_query():
 
   
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')
