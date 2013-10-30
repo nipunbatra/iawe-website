@@ -7,6 +7,10 @@ import pandas.io.sql as psql
 from mapping import water_meter_mapping,jplug_mapping,multisensor_mapping
 
 import matplotlib.pyplot as plt
+import matplotlib
+import json
+s = json.load( open("bmh_matplotlibrc.json") )
+matplotlib.rcParams.update(s)
 from threading import Lock
 lock = Lock()
 import random
