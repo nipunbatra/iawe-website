@@ -19,40 +19,90 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-				 <div class="container">
-          <h4 class="logo" style="font-family: 'Sofia'">iAWE 
-          </h4>
-          <<nav>
-            <ul class="menu">
-              <li><a href="{{ url_for('home') }}">Home</a></li>
-              
-
-             
-            
-          </nav>
-        </div>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+				
+					<h2>Insights into home energy consumption in India</h2>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						Presented in: Buildsys 2013<br/><br/>
+						
+						<b><a href="http://www.nipunbatra.wordpress.com">Nipun Batra</a> </b>
+						<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
+						<a href="http://www.manojgulati.wordpress.com">Manoj Gulati</a> </b>
+						<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
+						<a href="http://www.iiitd.edu.in/~amarjeet">Amarjeet Singh</a> </b>
+						<a href="http://iiitd.ac.in">(IIIT Delhi)</a><br/>
+						<a href="http://nesl.ee.ucla.edu/people/mbs/">Mani Srivastava</a> </b>
+						<a href="http://ucla.edu">(UCLA)</a>
+						
 					</p>
 				</section>
 
-				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
 				<section>
-					<iframe src="http://www.google.com"></iframe>
+					<h3>Motivation</h3>
+					<img src="{{url_for('static',filename='img/map_residential.png')}}">
+					<ol>
+					<li>Existing residential deployments in developed countries</li>
+					<li> Aim to characterize unique features of our deployment and their implications on system design 
+					</ol>
 				</section>
 
+
+				<section>
+				<h3>Overall Home Deployment</h3>
+					<img src="{{url_for('static',filename='img/overall_deployment.jpg')}}" height="230%" width="230%"/>
+				</section>
+
+				<section>
+				<img src="static/img/electric_meter_2.jpg" height="35%" width="35%">
+				<img src="static/img/ct_interference.jpg" height="35%" width="35%">
+				<img src="static/img/	jplug.jpg" height="35%" width="35%">
+
+
+					<h3>Electricity sensing</h3>	
+					<ol>
+					<li>Smart meter at mains level</li>
+					<li>Circuit panel monitors</li>
+					<li>Appliance level monitors</li>
+					<ol>
+				</section>
+
+				<section>
+				<img src="static/img/water_distribution.jpg" height="35%" width="35%">
+				<img src="static/img/water_meter.jpg" height="35%" width="35%">
+				
+				<h3>Water sensing</h3>
+				Used analog pulse based sensors at:<br/>
+				<ol>
+				<li>Supply</li>
+				<li>Outlet (Overhead tank)</li>
+				</ol>
+				</section>
+
+				<section>
+					<img src="static/img/ambient.jpg" height="35%" width="35%">
+					<h3>Ambient sensing</h3>
+					Used ZWave based multisensors and Android phones to monitor:<br/>
+				<ol>
+				<li>Light</li>
+				<li>Temperature</li>
+				<li>Motion</li>
+				<li>Sound level</li>
+				<li>Nearby bluetooth, WiFi, Cell-tower</li>
+				</ol>
+				</section>
+
+				<section>
+				<h3>Unique features in India- Unreliable grid</h3>
+				<p><br/><img src="static/img/us_voltage_box.png" height="30%" width="30%"><p>
+				<img src="static/img/voltage_box.png" height="30%" width="30%">
+
+
+				</section>
+
+				<section>
+				'<iframe height="600" id="igraph" scrolling="no" seamless="seamless" src="https://plot.ly/~nipun.batra.1/7/600/500" width="700"></iframe>'
+					
+				</section>
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
@@ -324,8 +374,12 @@ function linkify( selector ) {
 				</section>
 
 				<section>
-					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
+					<h1>Thank You</h1>
+					<h3>Acknowledgements</h3>
+					<ol>
+					<li> NSF-DEIty for project support</li>
+					<li> Milan Jain (MS IIITD) and Shailja Thakur (MS IIITD) for deployment support</li>
+					<li>Ofcourse- my family for bearing the deployment and living in fear that I may blow up something!</li>
 				</section>
 
 			</div>
@@ -345,8 +399,9 @@ function linkify( selector ) {
 				history: true,
 				center: true,
 
-				theme: 'sky', // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				theme: 'beige', // available themes are in /css/theme
+				transition: 'linear',
+				//Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
