@@ -1,382 +1,182 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>iAWE</title> 
-  <link rel="stylesheet" href="{{url_for('static',filename='css/reveal.min.css')}}">
-      <link rel="stylesheet" href="/static/css/theme/default.css" id='theme'>
+	<title>iAWE</title> 
+	<link rel="stylesheet" href="{{url_for('static',filename='css/reveal.min.css')}}">
+	<link rel="stylesheet" href="/static/css/theme/default.css" id='theme'>
 
-         <!-- For syntax highlighting -->
-       <link rel="stylesheet" href="{{url_for('static',filename='lib/css/zenburn.css')}}">
-       <head>
-       <body>
-
-		
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="{{url_for('static',filename='lib/css/zenburn.css')}}">
+	<head>
+		<body>
 
 
 
-		<div class="reveal">
-
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-				
-					<h2>Insights into home energy consumption in India</h2>
-					<p>
-						Presented in: Buildsys 2013<br/><br/>
-						
-						<b><a href="http://www.nipunbatra.wordpress.com">Nipun Batra</a> </b>
-						<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
-						<a href="http://www.manojgulati.wordpress.com">Manoj Gulati</a> </b>
-						<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
-						<a href="http://www.iiitd.edu.in/~amarjeet">Amarjeet Singh</a> </b>
-						<a href="http://iiitd.ac.in">(IIIT Delhi)</a><br/>
-						<a href="http://nesl.ee.ucla.edu/people/mbs/">Mani Srivastava</a> </b>
-						<a href="http://ucla.edu">(UCLA)</a>
-						
-					</p>
-				</section>
 
 
-				<section>
-					<h3>Motivation</h3>
-					<img src="{{url_for('static',filename='img/map_residential.png')}}">
-					<ol>
-					<li>Existing residential deployments in developed countries</li>
-					<li> Aim to characterize unique features of our deployment and their implications on system design 
-					</ol>
-				</section>
+			<div class="reveal">
 
-
-				<section>
-				<h3>Overall Home Deployment</h3>
-					<img src="{{url_for('static',filename='img/overall_deployment.jpg')}}" height="230%" width="230%"/>
-				</section>
-
-				<section>
-				<img src="static/img/electric_meter_2.jpg" height="35%" width="35%">
-				<img src="static/img/ct_interference.jpg" height="35%" width="35%">
-				<img src="static/img/	jplug.jpg" height="35%" width="35%">
-
-
-					<h3>Electricity sensing</h3>	
-					<ol>
-					<li>Smart meter at mains level</li>
-					<li>Circuit panel monitors</li>
-					<li>Appliance level monitors</li>
-					<ol>
-				</section>
-
-				<section>
-				<img src="static/img/water_distribution.jpg" height="35%" width="35%">
-				<img src="static/img/water_meter.jpg" height="35%" width="35%">
-				
-				<h3>Water sensing</h3>
-				Used analog pulse based sensors at:<br/>
-				<ol>
-				<li>Supply</li>
-				<li>Outlet (Overhead tank)</li>
-				</ol>
-				</section>
-
-				<section>
-					<img src="static/img/ambient.jpg" height="35%" width="35%">
-					<h3>Ambient sensing</h3>
-					Used ZWave based multisensors and Android phones to monitor:<br/>
-				<ol>
-				<li>Light</li>
-				<li>Temperature</li>
-				<li>Motion</li>
-				<li>Sound level</li>
-				<li>Nearby bluetooth, WiFi, Cell-tower</li>
-				</ol>
-				</section>
-
-				<section>
-				<h3>Unique features in India- Unreliable grid</h3>
-				<p><br/><img src="static/img/us_voltage_box.png" height="30%" width="30%"><p>
-				<img src="static/img/voltage_box.png" height="30%" width="30%">
-
-
-				</section>
-
-				<section>
-				'<iframe height="600" id="igraph" scrolling="no" seamless="seamless" src="https://plot.ly/~nipun.batra.1/7/600/500" width="700"></iframe>'
-					
-				</section>
-				<!-- Example of nested vertical slides -->
-				<section>
+				<!-- Any section element inside of this container is displayed as a slide -->
+				<div class="slides">
 					<section>
-						<h2>Vertical Slides</h2>
+
+						<h2>Insights into home energy consumption in India</h2>
 						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
+							Presented in: Buildsys 2013<br/><br/>
+
+							<b><a href="http://www.nipunbatra.wordpress.com">Nipun Batra</a> </b>
+							<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
+							<a href="http://www.manojgulati.wordpress.com">Manoj Gulati</a> </b>
+							<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
+							<a href="http://www.iiitd.edu.in/~amarjeet">Amarjeet Singh</a> </b>
+							<a href="http://iiitd.ac.in">(IIIT Delhi)</a><br/>
+							<a href="http://nesl.ee.ucla.edu/people/mbs/">Mani Srivastava</a> </b>
+							<a href="http://ucla.edu">(UCLA)</a>
+
 						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
 					</section>
+
+
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?#/themes">Default</a> -
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> <br>
-						<a href="?theme=moon.css#/themes">Moon</a> -
-						<a href="?theme=simple.css#/themes">Simple</a> -
-						<a href="?theme=solarized.css#/themes">Solarized</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
-
-				<section>
-					<h2>Global State</h2>
-					<p>
-						Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-						will be added as a class to the document element when the slide is open. This lets you
-						apply broader style changes, like switching the background.
-					</p>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<section data-background="#007777">
-						<h2>Slide Backgrounds</h2>
-						<p>
-							Set <code>data-background="#007777"</code> on a slide to change the full page background to the given color. All CSS color formats are supported.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png">
-						<h2>Image Backgrounds</h2>
-						<pre><code>&lt;section data-background="image.png"&gt;</code></pre>
-					</section>
-					<section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" data-background-repeat="repeat" data-background-size="100px">
-						<h2>Repeated Image Backgrounds</h2>
-						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
-					</section>
-				</section>
-
-				<section data-transition="linear" data-background="#4d7e65" data-background-transition="slide">
-					<h2>Background Transitions</h2>
-					<p>
-						Pass reveal.js the <code>backgroundTransition: 'slide'</code> config argument to make backgrounds slide rather than fade.
-					</p>
-				</section>
-
-				<section data-transition="linear" data-background="#8c4738" data-background-transition="slide">
-					<h2>Background Transition Override</h2>
-					<p>
-						You can override background transitions per slide by using <code>data-background-transition="slide"</code>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section>
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
+						<h3>Motivation</h3>
+						<img src="{{url_for('static',filename='img/map_residential.png')}}">
 						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
+							<li>Existing residential deployments in developed countries</li>
+							<li> Aim to characterize unique features of our deployment and their implications on system design 
+							</ol>
+						</section>
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
-				</section>
 
-				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
-				</section>
+						<section>
+							<h3>Overall Home Deployment</h3>
+							<img src="{{url_for('static',filename='img/overall_deployment.jpg')}}" height="230%" width="230%"/>
+						</section>
 
-				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
-				</section>
+						<section>
+							<img src="static/img/electric_meter_2.jpg" height="35%" width="35%">
+							<img src="static/img/ct_interference.jpg" height="35%" width="35%">
+							<img src="static/img/	jplug.jpg" height="35%" width="35%">
 
-				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
-				</section>
 
-				<section>
-					<h2>Stellar Links</h2>
-					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
-					</ul>
-				</section>
+							<h3>Electricity sensing</h3>	
+							<ol>
+								<li>Smart meter at mains level</li>
+								<li>Circuit panel monitors</li>
+								<li>Appliance level monitors</li>
+								<ol>
+								</section>
 
-				<section>
-					<h1>Thank You</h1>
-					<h3>Acknowledgements</h3>
-					<ol>
+								<section>
+									<img src="static/img/water_distribution.jpg" height="35%" width="35%">
+									<img src="static/img/water_meter.jpg" height="35%" width="35%">
+
+									<h3>Water sensing</h3>
+									Used analog pulse based sensors at:<br/>
+									<ol>
+										<li>Supply</li>
+										<li>Outlet (Overhead tank)</li>
+									</ol>
+								</section>
+
+								<section>
+									<img src="static/img/ambient.jpg" height="35%" width="35%">
+									<h3>Ambient sensing</h3>
+									Used ZWave based multisensors and Android phones to monitor:<br/>
+									<ol>
+										<li>Light</li>
+										<li>Temperature</li>
+										<li>Motion</li>
+										<li>Sound level</li>
+										<li>Nearby bluetooth, WiFi, Cell-tower</li>
+									</ol>
+								</section>
+
+								<section>
+									<h3>Unique features in India- Unreliable grid</h3>
+									<h4>Voltage fluctuations</h4>
+									<img src="static/img/us_voltage_box.png" height="30%" width="30%">
+									<img src="static/img/voltage_box.png" height="30%" width="30%">
+
+
+								</section>
+
+								<section>
+									<h3>Unique features in India- Unreliable grid</h3>
+									<h4>Blackouts</h4>
+									<img src="static/img/electricity.png" height="50%" width="45%">
+									<img src="static/img/failure_durations.png" height="50%" width="45%">
+									
+								</section>
+								<section>
+								<h3>Unique features in India- Unreliable grid</h3>
+									<h4>Learning</h4>
+								<ol>
+								<li><b>System Design:</b> system should be capable of restarting after power outage</li>
+								<li><b>Inferences:</b> voltage needs to be measured and cannot be assumed constant (applications in NILM)</li>
+								</ol>
+									
+								</section>
+
+								<section>
+									<h3>Unique features in India- Unreliable network</h3>
+									<h4>Internet</h4>
+									<img src="static/img/network.png" height="50%" width="45%">
+									<img src="static/img/network_hist.png" height="50%" width="45%">
+									
+								</section>
+
+								<section>
+									<h3>Unique features in India- Unreliable network</h3>
+									<h4>Learning</h4>
+									<ol>
+								<li><b>System Design:</b> system should account for unreliable internet. </li>
+								<li>We did the same by using "Local storage"- Each RPi would store data locally and periodically upload data outside.</li>
+								<li>As a result, we lost no data due to unreliable network</li>
+					
+								</ol>						
+									
+								</section>
+								<section>
+									<h3>Unique features in India- Load specifics</h3>
+									<ol>
+									<li><b>Decentralized control:</b> Room level ACs, bathroom level water heating</li>
+									<li>About 60% of total load can be attributed to AC (in summer) and water heater (in winter)</li>
+									<li>Fairly easy to disaggregate high percentage of total energy</li>
+									</ol>
+									<iframe height="420" id="igraph" scrolling="no" seamless="seamless" src="https://plot.ly/~nipun.batra.1/7/800/400" width="820"></iframe>
+
+								</section>
+
+								<section>
+									<h3>Importance of meta data</h3>
+									<h4>Refrigerator power consumption</h4>
+									<figure>
+									<img src="static/img/before_repair.png" height="40%"  width="30%">
+  									<figcaption><small>Before repair</small></figcaption>
+									<img src="static/img/after_repair.png" height="40%"  width="30%">
+  									<figcaption><small>After repair</small></figcaption>
+									</figure>
+								</section>
+								<section>
+								<h3>
+								iAWE Dataset</h3>
+
+
+								</section>
+
+
+								
+
+							
+						
+
+			
+
+
+			<section>
+				<h1>Thank You</h1>
+				<h3>Acknowledgements</h3>
+				<ol>
 					<li> NSF-DEIty for project support</li>
 					<li> Milan Jain (MS IIITD) and Shailja Thakur (MS IIITD) for deployment support</li>
 					<li>Ofcourse- my family for bearing the deployment and living in fear that I may blow up something!</li>
@@ -388,6 +188,7 @@ function linkify( selector ) {
 
 		<script src="{{url_for('static',filename='lib/js/head.min.js')}}"></script>
 		<script src="{{url_for('static',filename='js/reveal.min.js')}}"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 		<script>
 
@@ -405,16 +206,42 @@ function linkify( selector ) {
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
-					{ src: "{{url_for('static',filename='lib/js/classList.js')}}", condition: function() { return !document.body.classList; } },
-					{ src: "{{url_for('static',filename='plugin/markdown/marked.js')}}", condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: "{{url_for('static',filename='plugin/markdown/markdown.js')}}", condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: "{{url_for('static',filename='plugin/highlight/highlight.js')}}", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: "{{url_for('static',filename='plugin/zoom-js/zoom.js')}}", async: true, condition: function() { return !!document.body.classList; } },
-					{ src: "{{url_for('static',filename='plugin/notes/notes.js')}}", async: true, condition: function() { return !!document.body.classList; } }
+				{ src: "{{url_for('static',filename='lib/js/classList.js')}}", condition: function() { return !document.body.classList; } },
+				{ src: "{{url_for('static',filename='plugin/markdown/marked.js')}}", condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: "{{url_for('static',filename='plugin/markdown/markdown.js')}}", condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: "{{url_for('static',filename='plugin/highlight/highlight.js')}}", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: "{{url_for('static',filename='plugin/zoom-js/zoom.js')}}", async: true, condition: function() { return !!document.body.classList; } },
+				{ src: "{{url_for('static',filename='plugin/notes/notes.js')}}", async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
+		function currentPageFormatter(event) {
+var formattedStr;
+if (event.indexh === 0) {
+return "";
+}
+ 
+formattedStr = event.indexh;
+ 
+if (event.indexv) {
+formattedStr += "/" + event.indexv;
+}
+ 
+return formattedStr;
+}
+ 
+Reveal.addEventListener( 'ready', function( event ) {
+$('<aside class="controls slide-number" style="display: block; left: 10px; right: initial;bottom: -30px; text-align: center;"></aside>')
+.text(currentPageFormatter(event))
+.appendTo('.reveal.center');
+} );
+ 
+// Fires each time a new slide is activated
+Reveal.addEventListener( 'slidechanged', function( event ) {
+// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+$(".slide-number").text(currentPageFormatter(event));
+} );
 
-		</script>
+</script>
 </body>
 
 </html>		
