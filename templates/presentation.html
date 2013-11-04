@@ -22,7 +22,8 @@
 
 						<h2>Insights into home energy consumption in India</h2>
 						<p>
-							Presented in: Buildsys 2013<br/><br/>
+							November 14, 2013<br/>
+							Buildsys 2013<br/><br/>
 
 							<b><a href="http://www.nipunbatra.wordpress.com">Nipun Batra</a> </b>
 							<a href="http://iiitd.ac.in"> (IIIT Delhi)</a><br/>
@@ -34,45 +35,59 @@
 							<a href="http://ucla.edu">(UCLA)</a>
 
 						</p>
-						<img src="http://www.iiitd.ac.in/sites/default/files/images/graphicidentity/logo/style1coloricon.png">
+						<a href="http://iiitd.ac.in"><img src="static/img/iiitd.png" width="200" height="200"></a>
+						<a href="http://ucla.edu"><img src="static/img/ucla.jpg" width="200" height="200"></a>
 					</section>
 
 
-					<section>
+					<!--Backup slides-->
+					<!--<section>
 						<h3>Motivation</h3>
-						<img src="http://facweb.bhc.edu/academics/science/harwoodr/geog105/study/Images/HDI2006.gif">
+						<img src="static/img/map.gif">
 						<ol>
 							<li>Existing residential deployments in developed countries</li>
 							<li> Aim to characterize unique features of our deployment and their implications on system design 
 							</ol>
 						</section>
+						-->
 
+
+						<section>
+							<h3>Motivation</h3>
+							<iframe width="800" height="500" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" src="http://www.google.com/publicdata/embed?ds=kthk374hkr6tr_&amp;ctype=m&amp;strail=false&amp;bcs=d&amp;nselm=s&amp;met_c=indicator_103106&amp;scale_c=lin&amp;ind_c=false&amp;ifdim=country&amp;tunit=Y&amp;pit=1320206400000&amp;hl=en_US&amp;dl=en&amp;ind=false&amp;xMax=170.07678250000004&amp;xMin=-50.704467499999964&amp;yMax=-58.85339473903225&amp;yMin=71.61183808246297&amp;mapType=t&amp;icfg"></iframe>
+							<ol>
+							<li>Existing residential deployments in <b>developed</b> countries</li>
+							<li> Aim to characterize unique features of <b>Indian</b> deployment and their implications on system design 
+							</ol>
+						</section>
+						<!--
 					<section>
 						<h3>Motivation</h3>
-						<img src="{{url_for('static',filename='img/developing_vs_developed.png')}}" height="75%" width="75%">
+						<img src='static/img/developing_vs_developed.png' height="75%" width="75%">
 						<ol>
 							<li>Existing residential deployments in developed countries</li>
 							<li> Aim to characterize unique features of our deployment and their implications on system design 
 							</ol>
 						</section>
+						-->
 
 
 						<section>
 							<h3>Overall Home Deployment</h3>
-							<img src="{{url_for('static',filename='img/overall_deployment.jpg')}}" height="230%" width="230%"/>
+							<img src="{{url_for('static',filename='img/overall_deployment.png')}}" height="230%" width="230%"/>
 						</section>
 
 						<section>
 							<img src="static/img/electric_meter_2.jpg" height="35%" width="35%">
 							<img src="static/img/ct_interference.jpg" height="35%" width="35%">
-							<img src="static/img/	jplug.jpg" height="35%" width="35%">
+							<img src="static/img/jplug.jpg" height="35%" width="35%">
 
 
 							<h3>Electricity sensing</h3>	
 							<ol>
-								<li>Smart meter at mains level</li>
-								<li>Circuit panel monitors</li>
-								<li>Appliance level monitors</li>
+								<li>Smart meter at <b>Mains</b> level</li>
+								<li><b>Circuit</b> panel monitors</li>
+								<li><b>Appliance</b> level monitors</li>
 								<ol>
 								</section>
 
@@ -121,8 +136,8 @@
 								<h3>Unique features in India- Unreliable grid</h3>
 									<h4>Learning</h4>
 								<ol>
-								<li><b>System Design:</b> system should be capable of restarting after power outage</li>
-								<li><b>Inferences:</b> voltage needs to be measured and cannot be assumed constant (applications in NILM)</li>
+								<li><b>System Design:</b> System should be capable of resuming in same state as it was before outage</li>
+								<li><b>Inferences:</b> Voltage needs to be measured (in addition to current) and cannot be assumed constant (applications in NILM)</li>
 								</ol>
 									
 								</section>
@@ -139,8 +154,8 @@
 									<h3>Unique features in India- Unreliable network</h3>
 									<h4>Learning</h4>
 									<ol>
-								<li><b>System Design:</b> system should account for unreliable internet. </li>
-								<li>We did the same by using "Local storage"- Each RPi would store data locally and periodically upload data outside.</li>
+								<li><b>System Design:</b> System should account for unreliable internet </li>
+								<li>We did the same by using "Local storage"- Each RPi would store data locally and periodically upload data outside</li>
 								<li>As a result, we lost no data due to unreliable network</li>
 					
 								</ol>						
@@ -150,7 +165,7 @@
 									<h3>Unique features in India- Load specifics</h3>
 									<ol>
 									<li><b>Decentralized control:</b> Room level ACs, bathroom level water heating</li>
-									<li>About 60% of total load can be attributed to AC (in summer) and water heater (in winter)</li>
+									<li>About <b>60%</b> of total load can be attributed to AC (in summer) and water heater (in winter)</li>
 									<li>Fairly easy to disaggregate high percentage of total energy</li>
 									</ol>
 									<iframe height="420" id="igraph" scrolling="no" seamless="seamless" src="https://plot.ly/~nipun.batra.1/7/800/400" width="860"></iframe>
@@ -160,6 +175,8 @@
 								<section>
 								<h3>
 								iAWE Dataset</h3>
+								<hr>
+
 
 
 								</section>
