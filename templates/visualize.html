@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
-
+<style> 
+div #sidebar
+{
+border:2px solid #a1a1a1;
+padding:10px 20px; 
+border-radius:15px;
+}
+</style>
 
 <div id="sidebar">
 	<span>Select Sensor</span>
 	<br/>
-	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show();uncheck();' >Smart Meter</input>
+	<input type="radio" name="sensor" value="smart_meter" onchange='$(".params").hide();$("#smart_meter").show();uncheck();show_hint("smart_meter");' >Smart Meter</input>
 	<br/>
 	<span id="smart_meter" class="params">
 		<input id="W" type="checkbox">W</input><br/>
@@ -13,7 +20,7 @@
 		<input id="W2" type="checkbox">W2</input><br/>
 	</span>
 	<br/>
-	<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show();uncheck();' >JPlug</input>
+	<input type="radio" name="sensor" value="jplug" onchange='$(".params").hide();$("#jplug").show();uncheck();show_hint("jplug");' >JPlug</input>
 	<br/>
 	<span id="jplug" class="params">
 		<input id="ac1" type="checkbox">AC1</input><br/>
@@ -22,7 +29,7 @@
 		<input id="tv" type="checkbox">Television</input>
 	</span>
 	<br/>
-	<input type="radio" name="sensor" value="multisensor" onchange='$(".params").hide();$("#multisensor").show();uncheck();' >Multisensor</input>
+	<input type="radio" name="sensor" value="multisensor" onchange='$(".params").hide();$("#multisensor").show();uncheck();show_hint("multisensor");' >Multisensor</input>
 	<br/>
 	<span id="multisensor" class="params">
 		<input id="2" type="checkbox">Ground floor drawing room</input><br/>
@@ -33,7 +40,7 @@
 	</span>
 	<br/>
 
-	<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show();uncheck();' >Water Meter</input>
+	<input type="radio" name="sensor" value="water_meter" onchange='$(".params").hide();$("#water_meter").show();uncheck(); show_hint("water");' >Water Meter</input>
 	<br/>
 	<span id="water_meter" class="params">
 		<input id="1" type="checkbox">Supply</input><br/>
@@ -43,7 +50,7 @@
 	
 	<p>Start Date: <input type="text" id="start_date" /></p>
 	<p>End Date: <input type="text" id="end_date" /></p>
-
+	<span id="hint" style="font-size:x-small;">Select date between 16 May and 5 August</span><br/>
 	<button type="button" id="query">View Data</button>
 
 	<br/>
@@ -69,6 +76,29 @@
   		this.checked = false; 
   	}); 
   }
+
+  function show_hint(sensor)
+   {
+   	var hint;
+   	switch(sensor){
+   	case 'water':
+   	hint='Select date between 30 May and 2 August';
+   	break;
+
+   	case 'smart_meter':
+   	hint='Select date between 16 May and 5 August';
+   	break;
+
+   	case 'jplug':
+   	hint='Select date between 19 May and 5 August';
+   	break;
+
+   	case 'multisensor':
+   	hint='Select date between 24 May and 5 August'
+   	break;
+   }
+   	$('#hint').text(hint);
+   }
 
   
 

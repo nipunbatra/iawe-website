@@ -1,20 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
+<style> 
+div #sidebar,#top,#container
+{
+border:2px solid #a1a1a1;
+padding:10px 20px; 
+border-radius:15px;
+}
+</style>
+<div id="top">
+Select any number of sensors across the following. You can press 'Ctrl' to select multiple entries from the dropdown. <br/>
+</div>
 
-
+<br/>
 <div id="sidebar">
-	Select any number of sensors across the following. You can press 'Ctrl' to select multiple entries from the dropdown. <br/>						
-	<label>Select any number of MCB(s).<br/>
-	</label><a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/circuits.md">More info</a>
+							
+	<label>MCB</label>
+	</label><a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/circuits.md">More info</a><br/>
 	<select multiple="multiple" style="height: 70px;" id=ct_id>
 		<option value=1>1</option>
 		<option value=2>2</option>
 		<option value=3>3</option>
 		
 	</select>
-	<br/>
-	<br/>
-	<label>Select any number of Multisensor(s). </label> <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/multisensor.md">More info</a>
+	
+	<hr>
+	<label>Multisensor</label> <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/multisensor.md">More info</a><br/>
 	<select size=1 multiple="multiple" style="height: 70px;" id=node_id>
 		<option value=2>2</option>
 		<option value=3>3</option>
@@ -24,9 +35,8 @@
 		<option value=7>7</option>
 		
 	</select>
-	<br/>
-	<br/>
-	<label>Select jPlug ID.</label> <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/jplug_appliance.md" >More info</a>
+	<hr>
+	<label>Appliance Meter</label> <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/jplug_appliance.md" >More info</a><br/>
 	<select multiple="multiple" style="height: 70px;"  id=jplug_id>
 		<option value="001EC00CC49C">001EC00CC49C</option>
 		<option value="001EC00CC49F">001EC00CC49F</option>
@@ -40,9 +50,9 @@
 		<option value="001EC00E6BBD">001EC00E6BBD</option>
 		<option value="001EC00E6BB6">001EC00E6BB6</option>
 	</select>		
-	<br/><br/>
+	<hr>
 	
-	Time duration <div id="slider-range" style="width:300px"></div>
+	Time duration <div id="slider-range" style="width:180px"></div>
 	<br/>
 	
 	<button id="view_data" class="button">View</button>

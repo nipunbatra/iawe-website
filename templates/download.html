@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="jumbo">
+<h3>Data</h3>
   <ol> 
     <li> Smart Meter 
       <a href="https://copy.com/sxNCDnurZrlj">SQL</a> (1.3 GB)
@@ -11,18 +12,62 @@
     <li> Multisensor
      <a href="https://copy.com/IcDq9UvLUZO8">SQL (100 MB)</a>
      <a href="https://copy.com/DcJpjVVJPURS">,Compressed SQL (15 MB)</a>
+     <a href="https://copy.com/OKq4KfIEtJSs">, PIR CSV (12 MB)</a>
+     <a href="https://copy.com/dN3rFYo2M9Kz">, Light, Temp CSV (78 MB)</a>
+     <a href="https://copy.com/FGfrtGgDUCYO">, Compressed PIR CSV (3 MB) </a>
+     <a href="https://copy.com/E76CZIaTItIC"> , Compressed Light, Temp  CSV (14 MB)</a>
+     
     </li>
-    <li> jPlug<a href="https://copy.com/UvEGYR7VCliA">SQL</a> 
-    </li>
-    <li>System information <a href="https://copy.com/CtD7vXxGNt0k">SQL</a>
-    </li>
-    <li>Water meter <a href="https://copy.com/9BOOQLqqCs2M">SQL</a>
-    </li>
-    <li>CT  <a href="https://copy.com/SCOJElKqy8yD">SQL (25 MB)</a> 
-      <a href="https://copy.com/3tePk8t3l9Eq">,Compressed SQL(3 Mb)</a>
-      <a href="https://copy.com/ijyb83yXCgal">,CSV(25 Mb)</a>
+    <li> jPlug
+    <a href="https://copy.com/UvEGYR7VCliA">SQL (1 GB)</a> 
+    <a href="https://copy.com/CHgLO2r2rDQ4">, Compressed SQL (250 MB)</a>
+    <a href="https://copy.com/tqmAnyeVwbJX">, CSV (1022 MB)</a>
+    <a href="https://copy.com/97KtRjXG6h7h">, Compressed CSV (248 MB)</a>
 
     </li>
-  </ol></div>
+    <li>System information 
+    <a href="https://copy.com/CtD7vXxGNt0k">SQL (123 MB)</a>
+    <a href="https://copy.com/OkbBcX0q8k4u">, Compressed SQL (18 MB)</a>
+    <a href="https://copy.com/xugH8DSAX2zh">, CSV (113 MB)</a>
+    <a href="https://copy.com/F3soKYcpcDrf">, Compressed CSV (18 MB)</a>
+    </li>
+
+    <li>Water meter 
+    <a href="https://copy.com/9BOOQLqqCs2M">SQL (615 MB)</a>
+    <a href="https://copy.com/zsq0qGqbpYlj">, Compressed SQL (90 MB)</a>
+    <a href="https://copy.com/xTw0NmVi0RVn">, CSV (554 MB)</a>
+    <a href="https://copy.com/PBYdqTYpf1HI">, Compressed CSV (75 MB)</a>
+    </li>
+
+    <li>CT  
+      <a href="https://copy.com/SCOJElKqy8yD">SQL (25 MB)</a> 
+      <a href="https://copy.com/3tePk8t3l9Eq">,Compressed SQL (3 Mb)</a>
+      <a href="https://copy.com/ijyb83yXCgal">,CSV (25 Mb)</a>
+      <a href="https://copy.com/41c0DhLIaCBP">, Compressed CSV (4 MB) </a>
+
+    </li>
+
+    <li> <b>All of the above</b>
+    <a href="https://copy.com/pSpGYfN8sJxJ"> Compressed SQL (606 MB)</a>
+    <a href="https://copy.com/nkFfpqaU76cr"> Compressed CSV (597 MB)</a>
+  </ol>
+<br/>
+<hr>
+<h3>DB Schema</h3>  
+You can find the DB schemas for different MySQL databases <a href="https://github.com/nipunreddevil/Home_Deployment/tree/master/configuration/db_schemas">here</a>.
+<br/>
+<hr>
+<h3> Software to play with data</h3>
+<ol>
+<li>
+Unix-like systems (tested on Ubuntu 13.04)
+Run the <a href="https://github.com/nipunreddevil/Home_Deployment/blob/master/configuration/installation.sh">following </a>script to download the dependencies.
+</li>
+<li> Windows
+Packaging can be a lot of pain on Windows. We recommend you to download the latest version of Anaconda from Continuum Analytics. Download MySQL server community edition from Oracle's website. Follow the DB import steps as done in the above section.
+</li>
+</ol>
+Now, head over to the examples tab to see some examples of playing with the data.
+  </div>
 
   {% endblock %}
