@@ -55,7 +55,14 @@ def process_smart_meter(data):
 	query='select timestamp,'+param_string
 	query=query[:-1]+' from %s_data where timestamp between %d and %d;' %(data['sensor'],data['start'],data['end'])
 	print query
-	result=psql.frame_query(query,mysql_conn[data['sensor']])
+	try:
+		result=psql.frame_query(query,mysql_conn[data['sensor']])
+	except:
+		mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
+		mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
+		mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
+		mysql_conn['multisensor']=MySQLdb.connect(user='root',passwd='password',db='multisensor');
+		result=psql.frame_query(query,mysql_conn[data['sensor']])
 	result.index=pd.to_datetime(result.timestamp*1e9)
 	result=result.drop('timestamp',1)
 	freq_downsampled=calculate_downsampling_frequency(result)
@@ -77,7 +84,15 @@ def process_water_meter(data):
 	series=[]
 	for param in data['parameters']:
 		query='select timestamp,state from water_data where timestamp between %d and %d and meter_id= %d;' %(data['start'],data['end'],int(param))
-		result=psql.frame_query(query,mysql_conn['water_meter'])
+		try:
+			result=psql.frame_query(query,mysql_conn['water_meter'])
+		except Exception, e:
+			mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
+			mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
+			mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
+			mysql_conn['multisensor']=MySQLdb.connect(user='root',passwd='password',db='multisensor')
+			result=psql.frame_query(query,mysql_conn['water_meter'])
+		
 		result.index=pd.to_datetime(result.timestamp*1e9)
 		result=result.drop('timestamp',1)
 		freq_downsampled=calculate_downsampling_frequency(result)
@@ -98,7 +113,14 @@ def process_jplug(data):
 	series=[]
 	for param in data['parameters']:
 		query='select timestamp,active_power from jplug_data where timestamp between %d and %d and mac= "%s";' %(data['start'],data['end'],jplug_mapping[param])
-		result=psql.frame_query(query,mysql_conn['jplug'])
+		try:
+			result=psql.frame_query(query,mysql_conn['jplug'])
+		except:
+			mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
+			mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
+			mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
+			mysql_conn['multisensor']=MySQLdb.connect(user='root',passwd='password',db='multisensor')
+			result=psql.frame_query(query,mysql_conn['jplug'])
 		result.index=pd.to_datetime(result.timestamp*1e9)
 		result=result.drop('timestamp',1)
 		freq_downsampled=calculate_downsampling_frequency(result)
@@ -119,7 +141,14 @@ def process_multisensor(data):
 	series=[]
 	for param in data['parameters']:
 		query='select timestamp,temp,light from light_temp where timestamp between %d and %d and node_id= %d;' %(data['start'],data['end'],int(param))
-		result=psql.frame_query(query,mysql_conn['multisensor'])
+		try:
+			result=psql.frame_query(query,mysql_conn['multisensor'])
+		except:
+			mysql_conn['smart_meter']=MySQLdb.connect(user='root',passwd='password',db='smart_meter');
+			mysql_conn['jplug']=MySQLdb.connect(user='root',passwd='password',db='jplug');
+			mysql_conn['water_meter']=MySQLdb.connect(user='root',passwd='password',db='water_meter');
+			mysql_conn['multisensor']=MySQLdb.connect(user='root',passwd='password',db='multisensor')
+			result=psql.frame_query(query,mysql_conn['multisensor'])
 		result.index=pd.to_datetime(result.timestamp*1e9)
 		result=result.drop('timestamp',1)
 		freq_downsampled=calculate_downsampling_frequency(result)
