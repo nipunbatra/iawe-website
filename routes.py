@@ -12,6 +12,9 @@ import json
 from mpltools import style
 from mpltools import layout
 
+matplotlib.use('Agg')
+plt.ioff()
+
 style.use('ggplot')
 #s = json.load( open("bmh_matplotlibrc.json") )
 #matplotlib.rcParams.update(s)
